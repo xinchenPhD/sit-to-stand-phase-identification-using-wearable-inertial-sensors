@@ -1,0 +1,1 @@
+# sit-to-stand-phase-identification-using-wearable-inertial-sensors
