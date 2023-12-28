@@ -1,4 +1,3 @@
-# 看下文件夹层级结构
 import os
 import os.path
 

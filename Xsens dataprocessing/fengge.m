@@ -1,10 +1,10 @@
 clc
 clear
-XSENS_path = 'C:\Users\Administrator\Desktop\cx\XSENS data viewV1.0 20170822 (1)\XSENS data viewV1.0 20170822\晃动-4特征\';  
+XSENS_path = 'C:\Users\Administrator\Desktop\cx\XSENS data viewV1.0 20170822 (1)\XSENS data viewV1.0 20170822\';  
 XSENS_name = '*.xlsx';
 
 XSENSPath = dir([XSENS_path, XSENS_name]);
-Length = length(XSENSPath );    %计算文件夹里xls文档的个数
+Length = length(XSENSPath );    
 [data]=xlsread(strcat(XSENS_path ,XSENSPath (3).name));
 c = size(data,1);
 

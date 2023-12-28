@@ -10,9 +10,8 @@ import polt
 
 name = "sts_2-3-4-5-6.mat"
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# 加载数据
 print("Loading data...")
-test_data = io.loadmat(name)['sts'][0, 0]['test'].T.squeeze()  # 第一个[0, 0]一定要，否则会报错
+test_data = io.loadmat(name)['sts'][0, 0]['test'].T.squeeze()
 test_label = io.loadmat(name)['sts'][0, 0]['testlabels'].squeeze()
 train_data = io.loadmat(name)['sts'][0, 0]['train'].T.squeeze()
 train_label = io.loadmat(name)['sts'][0, 0]['trainlabels'].squeeze()
@@ -21,10 +20,9 @@ train_len = train_data.shape[0]
 test_len = test_data.shape[0]
 output_len = len(tuple(set(train_label)))
 
-# 时间步最大值
 max_lenth = 0  # 93
 for item in train_data:
-    item = torch.as_tensor(item).float()  # torch.as_tensor或者torch.from_numpy将numpy数组转为张量
+    item = torch.as_tensor(item).float()
     if item.shape[1] > max_lenth:
         max_lenth = item.shape[1]
         # max_length_index = train_data.tolist().index(item.tolist())
@@ -34,8 +32,6 @@ for item in test_data:
     if item.shape[1] > max_lenth:
         max_lenth = item.shape[1]
 
-# 填充Padding  使用0进行填充
-# train_data, test_data为numpy.object 类型，不能直接对里面的numpy.ndarray进行处理
 train_dataset_with_no_paddding = []
 test_dataset_with_no_paddding = []
 train_dataset = []
@@ -59,7 +55,6 @@ for index, x2 in enumerate(test_data):
         max_length_sample_inTest.append(x2.transpose(-1, -2))
     test_dataset.append(x2)
 
-# 最后维度 [数据条数,时间步数最大值,时间序列维度]
 # train_dataset_with_no_paddding = torch.stack(train_dataset_with_no_paddding, dim=0).permute(0, 2, 1)
 # test_dataset_with_no_paddding = torch.stack(test_dataset_with_no_paddding, dim=0).permute(0, 2, 1)
 train_dataset = torch.flatten(torch.stack(train_dataset, dim=0).permute(0, 2, 1), start_dim=1)
@@ -78,13 +73,7 @@ X_test = test_dataset.numpy()
 y_test = test_label.numpy()
 
 # Create a logistic regression model
-model = LogisticRegression(solver='liblinear', max_iter=20000)  # 迭代次数
-#   solver
-# - liblinear：适用于小型数据集，支持L1和L2正则化，是默认的solver参数。91
-# - newton-cg：适用于多分类问题和大型数据集，支持L2正则化。 93
-# - lbfgs：适用于小型和中型数据集，支持L2正则化。 93
-# - sag：适用于大型数据集，支持L2正则化。93
-# - saga：适用于大型数据集，支持L1和L2正则化。93
+model = LogisticRegression(solver='liblinear', max_iter=20000)
 
 # Train the model on the training data
 model.fit(X_train, y_train)
@@ -96,7 +85,7 @@ y_pred = model.predict(X_test)
 # accuracy = accuracy_score(y_test, y_pred)
 # mse = mean_squared_error(y_test, y_pred)
 confusion = confusion_matrix(y_test, y_pred)
-polt.plot_matrix(test_label, y_pred, '逻辑回归-HOT')
+polt.plot_matrix(test_label, y_pred, 'LR-HOT')
 # Print the accuracy and mean squared error
 # print("Accuracy:", accuracy)
 # print("Mean Squared Error:", mse)

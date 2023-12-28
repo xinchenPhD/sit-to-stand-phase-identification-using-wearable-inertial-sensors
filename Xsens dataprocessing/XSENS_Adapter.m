@@ -3,9 +3,9 @@
  
 addpath('ximu_matlab_library');     % include library
 
-temp = importdata(XSENSPath, '\t', 6);  %tab,第7行开始为数值
+temp = importdata(XSENSPath, '\t', 6);  
 XSENSDATA = temp.data;
-row=size(XSENSDATA,1);%第一个维度
+row=size(XSENSDATA,1);
 
 SamplePeriod = 1/100;
 
@@ -25,8 +25,8 @@ XSENS_z_g = XSENSDATA(:,7);
 % XSENS_total_g = sqrt(XSENS_x_g.*XSENS_x_g+XSENS_y_g.*XSENS_y_g+XSENS_z_g.*XSENS_z_g)*180/pi;
 XSENS_total_g = -sqrt(XSENS_x_g.*XSENS_x_g+XSENS_y_g.*XSENS_y_g+XSENS_z_g.*XSENS_z_g);
 %XSENS.Magnetometer = XSENSDATA(:,8:10);
-%XSENS.Ref_quaternion = XSENSDATA(:,11:14);   % 这里保存的与软件界面里的刚好是相反的，
-%XSENS.Ref_quaternion = quaternConj(XSENS.Ref_quaternion);   % 需要共轭一下，可能Xsens软件的问题吧。
+%XSENS.Ref_quaternion = XSENSDATA(:,11:14);   
+%XSENS.Ref_quaternion = quaternConj(XSENS.Ref_quaternion);  
 %XSENS.euler = quatern2euler(XSENS.Ref_quaternion) * (180/pi);
 
 % plot all the data.
@@ -91,7 +91,7 @@ end
 %         mag(t) = norm(XSENS.Magnetometer(t,:));
 %         Qtemp = XSENS.Ref_quaternion(t,:);
 %         XSENS.Gravity(t,:) = quaternProd(Qtemp,quaternProd([0,0,0,1],quaternConj(Qtemp)));
-%         TempG = XSENS.Gravity(t,2:4); %变成3维的。
+%         TempG = XSENS.Gravity(t,2:4); 
 %         dipangle(t) = acos(dot(XSENS.Magnetometer(t,:),TempG) / mag(t))*180/pi;
 %     end
 %     % ylim([0,0.3]);

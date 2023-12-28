@@ -16,7 +16,7 @@ class RNN(nn.Module):
         return out
 
 class LSTM_norm(nn.Module):
-    def __init__(self, input_size, hidden_size, num_layers, num_classes, dropout):  # num-layers控制层数1层就是普通的LSTM
+    def __init__(self, input_size, hidden_size, num_layers, num_classes, dropout):
         super(LSTM_norm, self).__init__()
         self.hidden_size = hidden_size
         self.num_layers = num_layers
@@ -25,7 +25,6 @@ class LSTM_norm(nn.Module):
         self.fc = nn.Linear(hidden_size, num_classes)
 
     def forward(self, x, device):
-        # 初始化的隐藏元和记忆元,通常它们的维度是一样的
         h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(device)  # x.size(0)是batch_size
         c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(device)
 
@@ -186,7 +185,7 @@ class LSTM_ENCODER_DECODER(nn.Module):
         x = self.fc(x)
         return x
 
-
+# our proposed algorithm
 class CNN_BiLSTM_Attention(nn.Module):
     def __init__(self, input_dim, hidden_dim, num_layers, num_classes, dropout):
         super(CNN_BiLSTM_Attention, self).__init__()

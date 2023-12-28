@@ -1,11 +1,10 @@
 clc
 clear
-XSENS_path = 'C:\Users\Administrator\Desktop\cx\相位划分\5.29\test_7\';     %修改路径
-
+XSENS_path = 'C:\Users\Administrator\Desktop\cx\5.29\test_7\';   
 
 XSENS_name = '*.xlsx';
 XSENSPath = dir([XSENS_path, XSENS_name]);
-Length = length(XSENSPath );    %计算文件夹里xls文档的个数
+Length = length(XSENSPath );    
 for i = 1:Length
     [data]=xlsread(strcat(XSENS_path ,XSENSPath (i).name))
     c = size(data,1)
@@ -16,6 +15,6 @@ for i = 1:Length
     x2 = strcat(XSENS_path,x1,'.mat')
     save(x2,'a');
     if  i == Length
-         save('test_7.mat','d');      %修改命名
+         save('test_7.mat','d');     
     end  
 end

@@ -1,4 +1,4 @@
-% AHRS_main.m   此文件专门用来查看数据
+% AHRS_main.m   
 %
 % This script demonstrates basic usage of the x-IMU MATLAB Library showing
 % how data can be easily imported visualised and the library class
@@ -16,7 +16,7 @@ clc;                                % clear the command terminal
 % run XSENS_Adapter  MT_2016-11-25_009.txt
 if 1
     XSENSPath = 'MT_2023-04-03-012.txt';  % MT_2016-11-24_000_sample.txt,,,MT_2017-06-06_006_cut.txt  MT_2016-11-25_009_cut.txt MT_2017-06-08_000.txt
-    onlineflag = 1; % 1, 使能 online 四元数，0， offline 四元数。
+    onlineflag = 1; 
     run XSENS_Adapter
     %save('Xsens_data','XSENS'); % 'YSKIMU',
 %
