@@ -1,5 +1,59 @@
 # sit-to-stand-phase-identification-using-wearable-inertial-sensors
-  1.The experimental equipment consisted of two AMTI force plates (BP400600-OP-1000, The United States), a set of Optima signal amplifiers, two wireless inertial sensors (MTw, Xsens Technologies BV, Enschede, The Netherlands), and a Awinda Station receiver. All algorithms were performed in a personal computer with Microsoft Windows 10, an Intel Core Processor i7-13700K, 32 GB RAM and GPU of NVIDIA GeForce RTX 3090.
-  IMU data processing and force plate data alignment processing is implemented in matlab.Traditional machine learning and deep learning algorithms are implemented in pycharm（Python=3.7、cuda=11.7、keras=2.10、numpy=1.21.5、scikit-learn=1.0.2）.
-  2.We defined the sit-to-stand transition into five phases including the initial sitting phase, the flexion momentum phase, the momentum transfer phase, the extension phase, and the stable standing phase based on two IMUs. We then proposed an threshold method and CNN-BiLSTM-Attention algorithm to accurately identify these phases.
-  3.The study compared traditional machine learning algorithms such as SVM, NB, 1NN, DT, LR, RF, and deep learning algorithms including CNN, LSTM, CNN-Bi-LSTM, Bi-LSTM, and Gated-Transformer.
+The core code is corresponding to the following paper:
+Title:A Novel CNN-BiLSTM ensemble model with attention mechanism for sit-to-stand phase identification using wearable inertial sensors
+Authors:Xin Chen, Shibo Cai*，Longjie Yu, Xiaoling Li, Bingfei Fan, Mingyu Du, Tao Liu, and Guanjun Bao
+
+##Equipmental settings
+The following equipment was utilized for the experimental settings(See the second section of the EXPERIMENTAL VALIDATION for details):
+- Two AMTI force plates
+- A set of Optima signal amplifiers
+- Two wireless inertial sensors
+- A Awinda Station receiver
+
+##Computing Environment
+OS: Microsoft Windows 10
+CPU:Intel Core  i7-13700K
+Memory:32 GB RAM
+GPU:NVIDIA GeForce RTX 3090
+
+##Software and Libraries
+- IMU data processing、phase segmentaion and build STS-PD dataset(See "IMU dataprocessing and phase segmentaion and build dataset" folder for specific running code）: MATLAB
+- Machine learning and Nerual network algorithms Development Environment:PyCharm
+Python:3.7
+CUDA:11.7
+Keras:2.10
+NumPy:1.21.5
+Scikit-Learn:1.0.2
+
+##Sit-to-Stand Transition Phases
+The sit-to-stand transition was divided into five  phases:
+1.Initial Sitting Phase
+2.Flexion Momentum Phase
+3.Momentum Transfer Phase
+4. Extension Phase
+5.Stable Standing Phase
+
+ ##Phase Identification Algorithms
+For the accurate identification of transition phases, the following methods were employed:
+1.Threshold Method
+2.CNN-BiLSTM-Attention Algorithm
+
+The study involved a comparative analysis between Machine learning algorithms and Nerual network algorithms. The following algorithms were compared:
+##Machine Learning Algorithms
+See "Machine learing algorithm" folder for specific running code
+- Support Vector Machine (SVM)
+- Naive Bayes (NB)
+- 1-Nearest Neighbor (1NN)
+- Decision Trees (DT)
+- Logistic Regression (LR)
+- Random Forest (RF)
+
+##Nerual network Algorithm
+See "Nerual network algorithm and Gated transformer" folder for specific running code
+- MLP
+- Convolutional Neural Network (CNN)
+- Long Short-Term Memory (LSTM)
+- CNN-Bi-directional LSTM (CNN-Bi-LSTM)
+- Bi-directional LSTM (Bi-LSTM)
+- Gated Transformer
+- CNN-BiLSTM-Attention
