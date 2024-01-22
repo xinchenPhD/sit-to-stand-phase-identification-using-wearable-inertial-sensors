@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader
 from dataset_process.dataset_process import MyDataset
 import torch.optim as optim
 from time import time
-from tqdm import tqdm   
+from tqdm import tqdm   # 进度条
 import os
 import numpy as np
 # from torchviz import make_dot
